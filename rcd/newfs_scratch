@@ -13,16 +13,16 @@ stop_cmd=":"
 
 newfs_scratch_start()
 {
-	if [ x"${newfs_scratch_disk}" != "x" ]; then
-		newfs ${newfs_scratch_disk}
+	if [ x"${scratch_disk}" != "x" ]; then
+		newfs ${scratch_disk}
 	else
-		echo "newfs_scratch_disk not set" >&2
+		echo "scratch_disk not set" >&2
 	fi
 
-	if [ x"${newfs_scratch_dir}" != "x" ]; then
+	if [ x"${scratch_dir}" != "x" ]; then
 		mount ${newfs_scratch_dir}
 	else
-		echo "newfs_scratch_dir not set" >&2
+		echo "scratch_dir not set" >&2
 	fi
 }
 
