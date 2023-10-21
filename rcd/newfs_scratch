@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # PROVIDE: newfs_scratch
-# REQUIRE: fsck_root
+# BEFORE: mountcritlocal
 
 $_rc_subr_loaded . /etc/rc.subr
 
@@ -14,13 +14,15 @@ stop_cmd=":"
 newfs_scratch_start()
 {
 	if [ x"${scratch_disk}" != "x" ]; then
+		echo "Initializing scratch disk."
 		newfs ${scratch_disk}
 	else
 		echo "scratch_disk not set" >&2
 	fi
 
 	if [ x"${scratch_dir}" != "x" ]; then
-		mount ${newfs_scratch_dir}
+		echo "Mounting scratch disk."
+		mount ${scratch_dir}
 	else
 		echo "scratch_dir not set" >&2
 	fi
