@@ -1,0 +1,10 @@
+newfs NAME=scratch
+mount /var/gobuilder
+
+echo "Starting buildlet in the background."
+(
+        export HOME=/root
+        cd $HOME
+        . ./.profile
+        nohup ./startbuildlet > /dev/constty 2>&1 &
+)

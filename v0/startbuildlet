@@ -1,0 +1,8 @@
+#!/bin/sh
+
+while true
+do
+        mkdir -p /var/gobuilder/buildlet
+        /home/bsiegert/go/bin/buildlet -coordinator farmer.golang.org -halt=false -reverse-type host-netbsd-arm64-bsiegert -workdir /var/gobuilder/buildlet
+        echo "---"
+done
