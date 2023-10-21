@@ -1,0 +1,3 @@
+#!/bin/sh
+mkdir -p /scratch/logs
+multilog /scratch/logs
