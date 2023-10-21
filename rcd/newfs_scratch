@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# PROVIDE: newfs_scratch
+# REQUIRE: fsck_root
+
+$_rc_subr_loaded . /etc/rc.subr
+
+name="newfs_scratch"
+rcvar=$name
+start_cmd="newfs_scratch_start"
+stop_cmd=":"
+
+
+newfs_scratch_start()
+{
+	if [ x"${newfs_scratch_disk}" != "x" ]; then
+		newfs ${newfs_scratch_disk}
+	else
+		echo "newfs_scratch_disk not set" >&2
+	fi
+
+	if [ x"${newfs_scratch_dir}" != "x" ]; then
+		mount ${newfs_scratch_dir}
+	else
+		echo "newfs_scratch_dir not set" >&2
+	fi
+}
+
+load_rc_config $name
+run_rc_command "$1"
