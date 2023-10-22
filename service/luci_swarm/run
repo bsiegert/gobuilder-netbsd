@@ -1,0 +1,3 @@
+#!/bin/sh
+
+setuidgid swarming /usr/local/bin/bootstrapswarm -hostname netbsd-arm64-bsiegert

@@ -1,0 +1,8 @@
+#!/bin/sh
+
+luci_cert_pem=/home/lucitoken/netbsd-arm64-bsiegert.key
+luci_pkey_pem=/home/lucitoken/netbsd-arm64-bsiegert.key
+
+
+setuidgid lucitoken /usr/local/bin/luci_machine_tokend -backend luci-token-server.appspot.com -cert-pem $luci_cert_pem -pkey-pem $luci_pkey_pem -token-file /var/lib/luci_machine_tokend/token.json
+sleep 600

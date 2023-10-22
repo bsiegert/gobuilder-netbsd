@@ -1,0 +1,3 @@
+#!/bin/sh
+mkdir -p /scratch/logs/luci_machine_tokend
+multilog /scratch/logs/luci_machine_tokend
