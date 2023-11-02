@@ -1,6 +1,6 @@
 #!/bin/sh
 
-luci_cert_pem=/home/lucitoken/netbsd-arm64-bsiegert.key
+luci_cert_pem=/home/lucitoken/netbsd-arm64-bsiegert.cert
 luci_pkey_pem=/home/lucitoken/netbsd-arm64-bsiegert.key
 
 
