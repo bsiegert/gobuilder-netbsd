@@ -1,3 +1,8 @@
 #!/bin/sh
-mkdir -p /scratch/logs/luci_swarm
-multilog /scratch/logs/luci_swarm
+
+. /etc/rc.conf
+
+[ -n ${scratch_dir} ] || exit 1
+
+mkdir -p ${scratch_dir}/logs/luci_swarm
+multilog ${scratch_dir}/logs/luci_swarm

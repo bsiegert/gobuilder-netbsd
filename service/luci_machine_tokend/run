@@ -1,7 +1,11 @@
 #!/bin/sh
 
-luci_cert_pem=/home/lucitoken/netbsd-arm64-bsiegert.cert
-luci_pkey_pem=/home/lucitoken/netbsd-arm64-bsiegert.key
+. /etc/rc.conf
+
+[ -n ${builder_name} ] || exit 1
+
+luci_cert_pem=/home/lucitoken/${builder_name}.cert
+luci_pkey_pem=/home/lucitoken/${builder_name}.key
 
 
 setuidgid lucitoken /usr/local/bin/luci_machine_tokend -backend luci-token-server.appspot.com -cert-pem $luci_cert_pem -pkey-pem $luci_pkey_pem -token-file /var/lib/luci_machine_tokend/token.json

@@ -1,3 +1,7 @@
 #!/bin/sh
 
-setuidgid swarming env HOME=/home/swarming /usr/local/bin/bootstrapswarm -hostname netbsd-arm64-bsiegert
+. /etc/rc.conf
+
+[ -n ${builder_name} ] || exit 1
+
+setuidgid swarming env HOME=/home/swarming /usr/local/bin/bootstrapswarm -hostname ${builder_name}

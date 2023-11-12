@@ -1,4 +1,8 @@
 #!/bin/sh
 
-mkdir -p /scratch/gobuilder/buildlet
-/root/go/bin/buildlet -coordinator farmer.golang.org -halt=false -reverse-type host-netbsd-arm64-bsiegert -workdir /scratch/gobuilder/buildlet 2>&1
+. /etc/rc.conf
+
+[ -n ${scratch_dir} ] || exit 1
+
+mkdir -p ${scratch_dir}/gobuilder/buildlet
+/root/go/bin/buildlet -coordinator farmer.golang.org -halt=false -reverse-type host-netbsd-arm64-bsiegert -workdir ${scratch_dir}/gobuilder/buildlet 2>&1
