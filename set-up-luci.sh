@@ -38,7 +38,21 @@ createuser swarming
 createuser lucitoken
 
 install_go_bin golang.org/x/build/cmd/genbotcert
-install_go_bin go.chromium.org/luci/tokenserver/cmd/luci_machine_tokend
 install_go_bin golang.org/x/build/cmd/bootstrapswarm
+install_go_bin go.chromium.org/luci/tokenserver/cmd/luci_machine_tokend
 
 make_dir /var/lib/luci_machine_tokend -o lucitoken
+
+if [ -e /service ]; then
+	echo "==> Directory /service already exists." >&2
+else
+	echo "==> Installing directory /service."
+	pax -rw -pp service /
+fi
+
+if grep -q "Go builder settings" /etc/rc.conf; then
+	echo "==> /etc/rc.conf already contains Go builder settings."
+else
+	echo "==> Installing Go builder settings to /etc/rc.conf, please verify!"
+	cat rcd/rc.conf >> /etc/rc.conf
+fi
