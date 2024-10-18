@@ -1,0 +1,4 @@
+### Go builder settings
+Cmd_Alias REBOOT = /sbin/shutdown -r now
+swarming ALL=(root) NOPASSWD: REBOOT
+### end Go builder settings

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-GO_VERSION=go121
+GO_VERSION=go123
 
 createuser() {
 	if userinfo -e $1; then
@@ -80,6 +80,13 @@ if grep -q "Go builder settings" /etc/rc.conf; then
 else
 	echo "==> Installing Go builder settings to /etc/rc.conf, please verify!" >&2
 	cat rcd/rc.conf >> /etc/rc.conf
+fi
+
+if grep -q "Go builder settings" /usr/pkg/etc/sudoers; then
+	echo "==> /usr/pkg/etc/sudoers already contains Go builder settings." >&2
+else
+	echo "==> Installing Go builder settings to /usr/pkg/etc/sudoers, please verify!" >&2
+	cat rcd/sudoers >> /usr/pkg/etc/sudoers
 fi
 
 . ./rcd/rc.conf
