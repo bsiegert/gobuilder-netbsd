@@ -4,4 +4,5 @@
 
 [ -n ${builder_name} ] || exit 1
 
+chown -R swarming /home/swarming/.swarming
 setuidgid swarming env HOME=/home/swarming /usr/local/bin/bootstrapswarm -hostname ${builder_name}
