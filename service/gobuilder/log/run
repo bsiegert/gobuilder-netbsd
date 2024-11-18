@@ -1,8 +1,0 @@
-#!/bin/sh
-
-. /etc/rc.conf
-
-[ -n ${scratch_dir} ] || exit 1
-
-mkdir -p ${scratch_dir}/logs/gobuilder
-multilog t ${scratch_dir}/logs/gobuilder
