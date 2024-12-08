@@ -45,7 +45,7 @@ install_go_bin() {
 
 echo "==> Installing useful packages." >&2
 if [ -x /usr/pkg/bin/pkgin ]; then
-	pkgin -y install emacs-nox11 watch estd screen sysupgrade bash go123 w3m vim llvm git-base htop sudo mosh pkg_alternatives clang daemontools daemontools-run node_exporter
+	pkgin -y install emacs-nox11 watch estd screen sysupgrade bash go123 w3m vim llvm git-base htop sudo mosh pkg_alternatives clang daemontools daemontools-run node_exporter doas
 else
 	echo "pkgin not found, please install packages manually" >&2
 fi
