@@ -43,6 +43,14 @@ install_go_bin() {
 
 ###############################
 
+echo "==> Installing useful packages." >&2
+if [ -x /usr/pkg/bin/pkgin ]; then
+	pkgin -y install emacs-nox11 watch estd screen sysupgrade bash go123 w3m vim llvm git-base htop sudo mosh pkg_alternatives clang daemontools daemontools-run node_exporter
+else
+	echo "pkgin not found, please install packages manually" >&2
+fi
+
+
 make_dir /usr/local/bin
 make_dir /usr/local/sbin
 
@@ -62,15 +70,10 @@ else
 	pax -rw -pp service /
 fi
 
-if grep -q svscanboot /etc/rc.local; then
-	echo "==> /etc/rc.local already contains daemontools initialization." >&2
-else
-	echo "==> Starting daemontools at boot (/etc/rc.conf)." >&2
-	echo "d\nwq" | ed /etc/rc.local
-	cat rcd/rc.local >> /etc/rc.local
-	echo
-	tail /etc/rc.local
-fi
+copy_file /usr/pkg/share/examples/rc.d/svscan /etc/rc.d
+copy_file /usr/pkg/share/examples/rc.d/node_exporter /etc/rc.d
+chmod 555 /etc/rc.d/svscan
+chmod 555 /etc/rc.d/node_exporter
 
 copy_file rcd/newfs_scratch /etc/rc.d
 chmod 555 /etc/rc.d/newfs_scratch
