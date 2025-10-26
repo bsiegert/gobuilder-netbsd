@@ -15,11 +15,15 @@ stop_cmd=":"
 newfs_scratch_start()
 {
 	if [ x"${scratch_disk}" != "x" ]; then
-		echo "Initializing scratch disk."
-		newfs ${scratch_disk}
+		if (dumpfs -s ${scratch_dir} | grep 'clean[[:blank:]]0x0[1|2]'); then
+			echo "Scratch disk is clean."
+		else
+			echo "Initializing scratch disk."
+			newfs ${scratch_disk}
+		fi
 		echo "Mounting scratch disk."
 		mount ${scratch_disk}
-		mount | fgrep ${scratch_disk}
+		mount | fgrep ${scratch_dir} || true
 	else
 		echo "scratch_disk not set" >&2
 	fi
